@@ -1,6 +1,7 @@
 package com.finance.personalcontrol.services;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,6 +35,15 @@ public class ReceitaService {
 		}		
 		var receita = new Receita(obj);
 		receitaRepository.save(receita);
+		return new ReceitaDetalheDTO(receita);
+	}
+	
+	public List<ReceitaDetalheDTO> findAll () {
+		return receitaRepository.findAll().stream().map(ReceitaDetalheDTO::new).toList();
+	}
+	
+	public ReceitaDetalheDTO findById(Long id) {
+		var receita = receitaRepository.getReferenceById(id);
 		return new ReceitaDetalheDTO(receita);
 	}
 
