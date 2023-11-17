@@ -38,4 +38,20 @@ public class ReceitaService {
 		return new ReceitaDetalheDTO(receita);
 	}
 
+	public ReceitaDetalheDTO update(Long id, ReceitaCadastroDTO obj){
+		var receita = receitaRepository.getReferenceById(id);
+		updateData(receita, obj);
+		receitaRepository.save(receita);
+		return new ReceitaDetalheDTO(receita);
+	}
+
+	private void updateData(Receita receita, ReceitaCadastroDTO obj) {
+		if(!receita.getDescricao().equalsIgnoreCase(obj.descricao())){
+			validadorReceitas.forEach(v -> v.validar(obj));
+		}
+		receita.setDescricao(obj.descricao());
+		receita.setValor(obj.valor());
+
+	}
+
 }
