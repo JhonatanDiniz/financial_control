@@ -45,13 +45,16 @@ public class ReceitaService {
 		return new ReceitaDetalheDTO(receita);
 	}
 
+	public void delete(Long id){
+		receitaRepository.deleteById(id);
+	}
+
 	private void updateData(Receita receita, ReceitaCadastroDTO obj) {
 		if(!receita.getDescricao().equalsIgnoreCase(obj.descricao())){
 			validadorReceitas.forEach(v -> v.validar(obj));
 		}
 		receita.setDescricao(obj.descricao());
 		receita.setValor(obj.valor());
-
 	}
 
 }
