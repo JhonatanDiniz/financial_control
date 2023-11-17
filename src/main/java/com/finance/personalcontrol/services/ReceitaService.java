@@ -34,7 +34,7 @@ public class ReceitaService {
 	}
 	
 	public ReceitaDetalheDTO findById(Long id) {
-		var receita = receitaRepository.getReferenceById(id);
+		var receita = receitaRepository.findById(id);
 		return new ReceitaDetalheDTO(receita);
 	}
 
@@ -52,9 +52,8 @@ public class ReceitaService {
 	private void updateData(Receita receita, ReceitaCadastroDTO obj) {
 		if(!receita.getDescricao().equalsIgnoreCase(obj.descricao())){
 			validadorReceitas.forEach(v -> v.validar(obj));
+			receita.setDescricao(obj.descricao());
 		}
-		receita.setDescricao(obj.descricao());
 		receita.setValor(obj.valor());
 	}
-
 }
