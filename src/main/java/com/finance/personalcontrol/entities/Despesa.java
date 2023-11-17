@@ -3,6 +3,7 @@ package com.finance.personalcontrol.entities;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import com.finance.personalcontrol.entities.dto.DespesaCadastroDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,7 +16,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name="expenses")
+@Table(name="despesas")
 @Getter
 @Setter
 @EqualsAndHashCode(of = "id")
@@ -30,4 +31,9 @@ public class Despesa {
 	private BigDecimal valor;
 	private LocalDate data;
 
+	public Despesa(DespesaCadastroDTO obj) {
+		this.descricao = obj.descricao();
+		this.valor = obj.valor();
+		this.data = obj.data();
+	}
 }
