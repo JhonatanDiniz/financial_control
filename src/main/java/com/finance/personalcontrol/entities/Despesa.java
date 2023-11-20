@@ -9,6 +9,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -29,11 +31,10 @@ public class Despesa {
 	private Long id;
 	private String descricao;
 	private BigDecimal valor;
-	private LocalDate data;
+	private LocalDate data = LocalDate.now();
 
 	public Despesa(DespesaCadastroDTO obj) {
 		this.descricao = obj.descricao();
 		this.valor = obj.valor();
-		this.data = obj.data();
 	}
 }
