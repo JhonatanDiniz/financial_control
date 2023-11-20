@@ -9,8 +9,6 @@ import com.finance.personalcontrol.entities.Receita;
 
 public interface ReceitaRepository extends JpaRepository<Receita, Long>{
 
-	Receita findByDescricao(String descricao);
-
 	@Query("""
 			SELECT r
 			FROM Receita r
@@ -18,7 +16,7 @@ public interface ReceitaRepository extends JpaRepository<Receita, Long>{
 			AND r.data >= :periodoIni 
 			AND r.data <= :periodoFin
 			""")
-	Receita buscaDescricaoMes(String descricao, LocalDate periodoIni, LocalDate periodoFin);
+	Receita buscaReceitasMes(String descricao, LocalDate periodoIni, LocalDate periodoFin);
 
 
 

@@ -20,7 +20,7 @@ public class ValidadorMesmaReceitaMes implements ValidadorReceitas {
 		var periodoIni = dataAtual.withDayOfMonth(1);
 		var periodoFin = dataAtual.withDayOfMonth(dataAtual.lengthOfMonth());
 		
-		var receitaCadastrada = receitaRepository.buscaDescricaoMes(obj.descricao(), periodoIni, periodoFin);
+		var receitaCadastrada = receitaRepository.buscaReceitasMes(obj.descricao(), periodoIni, periodoFin);
 		
 		if(receitaCadastrada != null && receitaCadastrada.getDescricao().equalsIgnoreCase(obj.descricao())) {
 			System.out.println("Receita: " + receitaCadastrada.toString());
