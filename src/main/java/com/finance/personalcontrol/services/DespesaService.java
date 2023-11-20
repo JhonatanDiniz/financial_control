@@ -27,4 +27,8 @@ public class DespesaService {
         despesaRepository.save(despesa);
         return new DespesaDetalheDTO(despesa);
     }
+
+    public List<DespesaDetalheDTO> findAll(){
+       return despesaRepository.findAll().stream().map(DespesaDetalheDTO::new).toList();
+    }
 }
